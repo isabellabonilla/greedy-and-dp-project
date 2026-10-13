@@ -30,6 +30,7 @@ This milestone focuses on two restricted versions of the problem.
 | `program2.py` | Solution for single-peak costs |
 | `generate_inputs.py` | Creates and validates random performance inputs for both programs |
 | `benchmark.py` | Measures both functions and saves individual runtimes and averages |
+| `plot_results.py` | Creates runtime plots from the saved benchmark averages |
 
 ### Requirements
 
@@ -106,4 +107,21 @@ After generating the inputs, run the benchmark.
 
 ```bash
 python benchmark.py
+```
 
+#### Plots
+
+After running the benchmark, generate the figures.
+
+```bash
+python plot_results.py
+```
+
+The script reads `results/summary.csv` and creates a separate plot
+for each program. The horizontal axis shows the number of panels,
+and the vertical axis shows average running time in seconds.
+Each point averages 50 measurements, with k fixed at 10.
+
+Figures are saved in the `plots/` folder as PNG files for previewing
+and PDF files for the LaTeX report. Plotting does not rerun the
+benchmarks.
