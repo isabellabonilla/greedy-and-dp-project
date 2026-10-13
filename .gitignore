@@ -21,3 +21,6 @@ venv/
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+
+# Reproducible experiment inputs
+inputs/
