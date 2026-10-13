@@ -1,2 +1,4 @@
-# greedy-and-dp-project
-COP4533 Milestone 1 — greedy algorithms for the Orbital Solar Array Inspection Robot, with runtime experiments and Matplotlib plots.
+# COP4533: Algorithm Design & Analysis
+
+# Project 1 Milestone:
+Greedy algorithms for the Orbital Solar Array Inspection Robot, with runtime experiments and Matplotlib plots.
