@@ -28,6 +28,8 @@ This milestone focuses on two restricted versions of the problem.
 |---|---|
 | `program1.py` | Greedy solution for monotonically non-increasing costs |
 | `program2.py` | Solution for single-peak costs |
+| `generate_inputs.py` | Creates and validates random performance inputs for both programs |
+| `benchmark.py` | Measures both functions and saves individual runtimes and averages |
 
 ### Requirements
 
@@ -84,5 +86,24 @@ takes Θ(n) time for either program.
 
 ### Experimental Study
 
-We will add runtime measurements and Matplotlib plots to examine how
-each algorithm's running time changes as the input size increases.
+We are measuring how each algorithm's running time changes as the
+number of panels increases.
+
+
+#### Setup
+
+Create and activate a virtual environment, then install the packages.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+#### Measure Running Times
+
+After generating the inputs, run the benchmark.
+
+```bash
+python benchmark.py
+
