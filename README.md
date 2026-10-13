@@ -5,7 +5,7 @@
 ### Team
 
 - Isabella Bonilla
-- Jacqueline
+- Jaqueline Jurado
 
 We each implemented both programs independently, then compared our
 approaches in person and agreed on the final implementations.
