@@ -15,10 +15,32 @@ def program3(n: int, k: int, costs: List[int]) -> Tuple[int, List[int]]:
     List[int]: the indices of the visited panels in increasing order(1-indexed, including n and excluding 0)
     """
     ############################
-    # Add your code here
+
+    def min_cost(panel):
+
+        # starting pos has no landing cost
+        if panel == 0:
+            return 0, []
+
+        best_cost = float("inf")
+        best_route = []
+
+        # check every panel we could have jumped from
+        for prev in range(max(0, panel - k), panel):
+            prev_cost, prev_route = min_cost(prev) # recursively find the best cost and route to the prev panel
+
+            # add cost of landing on curr panel
+            total_cost = prev_cost + costs[panel - 1]
+
+            if total_cost < best_cost:
+                best_cost = total_cost
+                best_route = prev_route + [panel]
+
+        return best_cost, best_route
+    
     ############################
 
-    return 0, [1, 2, 3] # replace with your code
+    return min_cost(n) # call helper function with the last panel as the target
 
 
 if __name__ == '__main__':
