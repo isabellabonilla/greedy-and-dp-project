@@ -106,8 +106,8 @@ def main():
     args.sizes = sorted(set(args.sizes))
     if any(not 1 <= n < 100_000 for n in args.sizes):
         parser.error("sizes must be between 1 and 99,999")
-    if "3" in args.programs and max(args.sizes) > 26:
-        parser.error("this pilot caps Program 3 at n=26 to limit exponential runs")
+    if "3" in args.programs and max(args.sizes) > 30:
+        parser.error("this pilot caps Program 3 at n=30 to limit exponential runs")
     if min(args.samples, args.runs) < 1:
         parser.error("samples and runs must both be positive")
     if args.output.exists():
