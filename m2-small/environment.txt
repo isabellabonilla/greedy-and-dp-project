@@ -1,0 +1,10 @@
+Python: 3.11.4 (v3.11.4:d2340ef257, Jun  6 2023, 19:15:51) [Clang 13.0.0 (clang-1300.0.29.30)]
+Platform: macOS-15.7.9-x86_64-i386-64bit
+Seed: 4533
+Sizes: [12, 14, 16, 18, 20, 22, 24]
+k: ceil(n/10)
+Datasets per size: 5
+Timed calls per dataset: 2
+Warm-up calls per dataset: 1
+Timer: perf_counter
+Timed scope: solver call, including route construction
