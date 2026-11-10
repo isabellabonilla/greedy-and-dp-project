@@ -20,16 +20,16 @@ def program4A(n: int, k: int, costs: List[int]) -> Tuple[int, List[int]]:
 
     memo = {} # memo table, tracks panel index to its result as a tuple
 
-    def solve(current_panel: int) -> Tuple[int, List[int]]:
-    # base case where if we've reached panel n, cost is 0 and no more panels need to be covered
+    def solve(current_panel: int) -> int:
+        # base case where if we've reached panel n, cost is 0, nowhere else to jump
         if current_panel == n: 
-            return 0, []
-    # check if best path has already been calculated for this curr panel, can just read it from memo table
+            return 0
+        # check if best path has already been calculated for this curr panel
         if current_panel in memo:
-            return memo[current_panel]
+            return memo[current_panel][0]
 
         min_cost = float('inf')
-        best_path = []
+        best_next = -1
 
         # now loop going 1 up to k steps forward, but not past last one
         for jump in range(1, k+1):
@@ -38,23 +38,29 @@ def program4A(n: int, k: int, costs: List[int]) -> Tuple[int, List[int]]:
             if next_panel > n:
                 break
 
-            # now recursively find cost and path for the rest of the way from next_panel
-            future_cost, future_path = solve(next_panel)
+            # calculate the cost of this jump, which is the cost of landing on next_panel plus the cost of the rest of the path from there
+            total_cost = costs[next_panel - 1] + solve(next_panel)
 
             # store cost of next_panel, and check if it was cheaper overall, update records if so
-            total_cost = costs[next_panel - 1] + future_cost
             if total_cost < min_cost:
                 min_cost = total_cost
-                best_path = [next_panel] + future_path
+                best_path = next_panel
 
         # outside of loop, save the best outcome to table before returning value
         memo[current_panel] = (min_cost, best_path)
-        return memo[current_panel]
+        return min_cost
 
+    # have to run the recursion to populate the memo table
+    final_cost = solve(0)
+    path = []
+    curr = 0
 
-
-
-    return solve(0)
+    # path reconstruction with breadcrumbs backward from 0 to n
+    while curr != n:
+        curr = memo[curr][1]
+        path.append(curr)
+        
+    return final_cost, path
 
 
 if __name__ == '__main__':
