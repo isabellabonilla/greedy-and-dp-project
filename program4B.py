@@ -18,7 +18,34 @@ def program4B(n: int, k: int, costs: List[int]) -> Tuple[int, List[int]]:
     # Add your code here
     ############################
 
-    return 0, [1, 2, 3] # replace with your code
+    # dp[i] stores min cost to reach panel i from panel 0, parent[i] stores panel we jumped FROM to reach panel i
+    dp = [float('inf')] * (n + 1)
+    parent = [-1] * (n + 1)
+    
+    # base case here starting at position 0 costs nothing, then outer loop will build up the rest of the table
+    dp[0] = 0
+    for i in range(1, n + 1):
+        
+        # inner loop looks backward at the previous k panels to see which had the cheapest jump
+        for j in range(max(0, i - k), i):
+            
+            # cost to reach panel i if we jumped from panel j, update if jumping from j is cheaper than our recorded best way to reach i
+            current_cost = dp[j] + costs[i - 1]
+            if current_cost < dp[i]:
+                dp[i] = current_cost
+                parent[i] = j
+                
+    # path reconstruction with breadcrumbs backward from n to 0
+    path = []
+    current = n
+    
+    while current != 0:
+        path.append(current)
+        current = parent[current]
+        
+    path.reverse()
+    
+    return dp[n], path
 
 
 if __name__ == '__main__':
